@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learner Data</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Learner Data</h1>
+    <form id="learner-data-form">
+        <label for="course-info">Course Info:</label>
+        <input type="text" id="course-info" name="course-info"><br><br>
+        <label for="assignment-group">Assignment Group:</label>
+        <input type="text" id="assignment-group" name="assignment-group"><br><br>
+        <label for="learner-submissions">Learner Submissions:</label>
+        <textarea id="learner-submissions" name="learner-submissions"></textarea><br><br>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="learner-data"></div>
+    <script src="index.js"></script>
+    <script>
+        const courseInfoInput = document.getElementById('course-info');
+        const assignmentGroupInput = document.getElementById('assignment-group');
+        const learnerSubmissionsInput = document.getElementById('learner-submissions');
+        const learnerDataDiv = document.getElementById('learner-data');
+
+        document.getElementById('learner-data-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const courseInfo = JSON.parse(courseInfoInput.value);
+            const assignmentGroup = JSON.parse(assignmentGroupInput.value);
+            const learnerSubmissions = JSON.parse(learnerSubmissionsInput.value);
+            const learnerData = getLearnerData(courseInfo, assignmentGroup, learnerSubmissions);
+            learnerDataDiv.innerHTML = JSON.stringify(learnerData, null, 2);
+        });
+    </script>
+</body>
+</html>
